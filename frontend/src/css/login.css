@@ -1,10 +1,15 @@
 :root {
     --light-color: #d9d9d9;
+    --button-color: #5170ff;
 }
 
 @media (prefers-color-scheme: light) {
     :root {
         --light-color: black;
+        --button-color: black;
+    }
+    #login-form button:hover {
+        border: 1px solid white;
     }
 }
 
@@ -50,17 +55,12 @@
     padding-bottom: 1vh;
 }
 
-#guest {
-    font-size: auto;
-    background-color: wheat;
-}
-
 #login-form button {
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-top: 18vh;
-    background-color: #5170ff;
+    background-color: var(--button-color);
     color: white;
     font-size: 25px;
     font-family: "Alice";
@@ -88,6 +88,12 @@ p {
 #login-form button:hover {
     background-color: #3d5ef9;
     cursor: pointer;
+}
+
+@media (prefers-color-scheme: light) {
+    #login-form button:hover {
+        background-color: black;
+    }
 }
 
 

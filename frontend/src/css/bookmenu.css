@@ -2,6 +2,14 @@
 
 :root {
     --dark-blue: #021673;
+    --border-color: #2b3b80;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --dark-blue: #8f8d8d;
+    --border-color: #d4d4d4;
+  }
 }
 
 * {
@@ -60,7 +68,7 @@ button[type="submit"] {
     grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
     text-align: center;
-    border: 5px solid #2b3b80;
+    border: 5px solid var(--border-color);
     border-radius: 6px;
     margin: 30px auto;
     padding: 20px;
@@ -91,7 +99,7 @@ button[type="submit"] {
     justify-self: center;
 }
 
-.book-cover:hover {
+.book-cover:hover, .book-name:hover {
     cursor: pointer;
 }
 

@@ -63,6 +63,19 @@ form button:hover {
     cursor: pointer;
 }
 
+@media (prefers-color-scheme: light) {
+    #cover-preview[src=""] {
+        background-color: white;
+    }
+    form button {
+        background-color: black;
+    }
+    form button:hover {
+        background-color: black;
+        border: 1px solid white;
+    }
+}
+
 #move-book[aria-hidden="true"] {
     display: none;
 }

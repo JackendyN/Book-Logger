@@ -6,7 +6,7 @@
 @media (prefers-color-scheme: light) {
   :root {
     --background: linear-gradient(180deg, #ff9042, #ffa166);
-    --font-color: black;
+    --font-color: white;
   }
 }
 
@@ -21,7 +21,7 @@ html {
 }
 
 #back {
-    color: #d9d9d9;
+    color: var(--font-color);
     background-color: #5170ff;
     font-size: 25px;
     border: 0 solid rgba(0,0,0,0);
@@ -38,4 +38,15 @@ html {
     background-color: #506be7;
     transform: scale(1.1);
     cursor: pointer;
+}
+
+@media (prefers-color-scheme: light) {
+  #back {
+    background-color: black;
+  }
+
+  #back:hover {
+    background-color: black;
+    border: 1px solid white;
+  }
 }

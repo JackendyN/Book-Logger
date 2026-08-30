@@ -1,6 +1,6 @@
 document.querySelector("#guest")?.addEventListener("click", (e) => {
     e.preventDefault();
-    localStorage.setItem("guest", "true");
+    sessionStorage.setItem("guest", "true");
     window.location.href = "home.html";
 });
 
@@ -153,5 +153,5 @@ document.addEventListener("DOMContentLoaded", () => {
         "bought-from": "ThriftBooks"
     }
     ];
-    window.sessionStorage.setItem("local-books", JSON.stringify(sampleBooks));
+    window.localStorage.setItem("local-books", JSON.stringify(sampleBooks));
 })

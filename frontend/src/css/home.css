@@ -2,6 +2,12 @@
     --dark-blue: #021673;
 }
 
+@media (prefers-color-scheme: light) {
+  :root {
+    --dark-blue: #d4d4d4;
+  }
+}
+
 * {
     font-weight: normal;
 }
@@ -80,4 +86,14 @@ h1 {
 .menu-button:hover {
     background-color: #24326e;
     cursor: pointer;
+}
+
+@media (prefers-color-scheme: light) {
+  .menu-button {
+    background-color: black;
+  }
+  .menu-button:hover {
+    background-color: black;
+    border: 1px solid white;
+  }
 }

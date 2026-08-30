@@ -58,7 +58,7 @@ const renderBooks = (books, month = 0, year = 0, obtained = "", author = "") => 
         }
         listing.innerHTML += `
             <div class="book-info">
-                <h3><span class="bold">${book["book-name"]}</span></h3>
+                <h3><span class="bold book-name">${book["book-name"]}</span></h3>
                 <h4>by <span class="bold">${book["author-name"]}</span></h4>
             </div>
         `;
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     bookArray.sort(compareDates);
     renderBooks(bookArray);
-    const bookCovers = Array.from(document.querySelectorAll(".book-cover"));
+    const bookCovers = Array.from(document.querySelectorAll(".book-cover, .book-name"));
     bookCovers.forEach((cover) => cover.addEventListener("click", () => {
         window.location.href = "updatebook.html";
     }));
