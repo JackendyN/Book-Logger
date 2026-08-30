@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Wishlist - Book Logger</title>
+        <meta name="description" content="Web application for logging books read and books that are wished for.">
+        <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="../css/bookmenu.css">
+        <link rel="stylesheet" href="../css/wishlist.css">
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Alice" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16x16.png">
+        <link rel="manifest" href="../../assets/site.webmanifest">
+    </head>
+    <body>
+        <button id="back">←</button>
+        <h1><span class="bold">Book Wishlist</span></h1>
+
+        <button id="filter-button" aria-haspopup="true">Filters</button>
+        <div id="filter-menu">
+            <button id="obtained-button">Method Obtained</button>
+                <div id="obtain-submenu" class="submenu">
+                    <form>
+                        <label>Borrowed: 
+                            <input type="checkbox" value="borrowed" checked>
+                        </label>
+                        <label>Owned: 
+                            <input type="checkbox" value="owned" checked>
+                        </label>
+                        <button type="submit">Update</button>
+                    </form>
+                </div>
+                <button id="author-button">Author</button>
+                <div id="author-submenu" class="submenu">
+                    <form>
+                        <label> Author:
+                            <input required type="text" id="author-filter-input">
+                        </label>
+                        <button type="submit">Update</button>
+                    </form>
+                </div>
+        </div>
+
+        <div id="book-container">
+            <div class="book-listing">
+                <img class="book-cover" tabindex=0 src="https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1586722975i/2767052.jpg">
+                <div class="book-info">
+                    <h3><span class="bold">Book Title</span></h3>
+                    <h4>by <span class="bold">Book Author</span></h4>
+                </div>
+                <div class="how-obtained">
+                    <h3><span class="bold">Borrowing</span></h3>
+                    <h4>From</h4>
+                </div>
+            </div>
+        </div>
+        <p>You can update a book by clicking/pressing the cover!</p>
+
+        <script src="../../dist/script/booklist.js" defer></script>
+    </body>
+</html>

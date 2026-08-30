@@ -1,0 +1,68 @@
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-top: 11.5vh;
+    margin-bottom: 60px;
+}
+
+#book-form {
+    width: 100%;
+    margin: 0 auto;
+}
+
+#cover-preview[src=""] {
+    background-color: #021673;
+    width: 170px;
+    height: 240px;
+}
+
+#main-section, #bought-values[aria-hidden="false"], #borrowed-values[aria-hidden="false"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.3rem;
+    margin-top: 30px;
+}
+
+#main-section label, #bought-values[aria-hidden="false"] label, #borrowed-values[aria-hidden="false"] label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+input {
+    margin-left: 10px;
+}
+
+input:not(input[type="file"]), select {
+    background-color: #d9d9d9;
+}
+
+#cover-preview {
+    max-width: 175px;
+    height: auto;
+}
+
+form button {
+    display: block;
+    margin: 40px auto;
+    background-color: #5170ff;
+    color: white;
+    font-size: 20px;
+    font-family: "Alice";
+    width: 60%;
+    max-width: 350px;
+    height: 42px;
+    border-radius: 45px;
+    border: 0px solid rgba(0,0,0,0);
+}
+
+form button:hover {
+    background-color: #3d5ef9;
+    cursor: pointer;
+}
+
+#move-book[aria-hidden="true"] {
+    display: none;
+}

@@ -1,0 +1,114 @@
+#controls {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 14%;
+}
+
+#filter-container {
+    width: 35%;
+    margin-top: 6%;
+}
+
+#filter-button {
+    border: 0px solid black;
+    background-color: #e1e6ff;
+    width: 100%;
+    height: 40px;
+    font-family: "Alice";
+    font-size: 18px;
+}
+
+#filter-menu > button {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-left-width: 0;
+    border-right-width: 0;
+    font-family: "Alice";
+    display: block;
+    position: relative;
+    width: 100%;
+    left: 0;
+    background-color: #e1e6ff;
+    height: 30px;
+}
+
+.submenu {
+    font-family: "Alice";
+    background-color: #e1e6ff;
+    color: black;
+    width: 100%;
+    position: relative;
+    left: 0;
+}
+
+.submenu, #set-order-form {
+    display: none;
+}
+
+#filter-button:hover, #order-button:hover {
+    background-color: #f4f6ff;
+    cursor: pointer;
+}
+
+#date-submenu.active, #obtain-submenu.active, #author-submenu.active {
+    display: inline-block;
+}
+
+#date-submenu label, #obtain-submenu label {
+    display: block;
+}
+
+#order-container {
+    width: 35%;
+    margin-top: 6%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #e1e6ff;
+    color: black;
+}
+
+#order-button {
+    border: 0px solid black;
+    background-color: #e1e6ff;
+    width: 100%;
+    height: 40px;
+    font-family: "Alice";
+    font-size: 18px;
+}
+
+#order-button::after {
+    content: "▼";
+    margin-left: 9px;
+}
+
+#set-order-form.active {
+    display: flex;
+    flex-direction: column;
+    font-family: "Alice";
+    border-top: 1px solid rgba(0,0,0,0.1);
+    font-size: 15px;
+    width: 100%;
+}
+
+#set-order-form label {
+    margin: 5px 0px;
+}
+
+.submenu * {
+    text-align: center;
+    margin: 2px 0px;
+}
+
+.listing-year {
+    color: #b6c0f2;
+}
+
+#book-container hr {
+    border: 3px solid var(--dark-blue);
+}
+
+.when-obtained > h3 > span {
+    font-size: 0.88em;
+}

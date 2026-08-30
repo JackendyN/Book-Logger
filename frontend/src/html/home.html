@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home - Book Logger</title>
+        <meta name="description" content="Web application for logging books read and books that are wished for.">
+        <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="../css/home.css">
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Alice" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16x16.png">
+        <link rel="manifest" href="../../assets/site.webmanifest">
+    </head>
+    <body>
+        <button id="log-out">Log Out</button>
+        <h1><span class="bold">Dashboard</span></h1>
+
+        <div id="book-container">
+            <h2>Current Book:</h2>
+            <div class="book">
+                <img class="book-cover" src="https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1586722975i/2767052.jpg">
+                <h3><span class="bold">Book Title</span></h3>
+                <h4>by <span class="bold">Book Author</span></h4>
+                <h3><span class="bold">Due Date: MM/DD/YY</span></h3>
+                <hr>
+            </div>
+        </div>
+        <button class="menu-button" id="view-books">View Book Log</button>
+        <button class="menu-button" id="book-wishlist">View Book Wishlist</button>
+        <button class="menu-button" id="add-book">Add Book</button>
+
+        <script src="../../dist/script/home.js"></script>
+    </body>
+</html>

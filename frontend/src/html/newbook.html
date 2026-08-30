@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Add Book - Book Logger</title>
+        <meta name="description" content="Web application for logging books read and books that are wished for.">
+        <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="../css/bookform.css">
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Alice" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../../assets/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16x16.png">
+        <link rel="manifest" href="../../assets/site.webmanifest">
+    </head>
+    <body>
+        <button id="back">←</button>
+        <h1><span class="bold">Add Book</span></h1>
+
+        <form id="book-form" method="POST">
+
+            <div id="main-section">
+                <label for="book-name">Book Name:
+                    <input required type="text" id="book-name" name="book-name">
+                </label>
+                <label for="author-name">Author:
+                    <input required type="text" id="author-name" name="author-name">
+                </label>
+                <label for="reading">Are you currently reading this book?
+                    <input required type="checkbox" id="reading" name="reading">
+                </label>
+                <label for="cover">Cover Image (OPTIONAL):
+                    <input type="file" accept="image/*" id="cover" name="cover">
+                </label>
+                <img id="cover-preview" src="">
+
+                <label for="obtain-select">How did you get this book?
+                    <select required id="obtain-select" name="obtained">
+                        <option value="bought" selected>Bought</option>
+                        <option value="borrowed">Borrowed</option>
+                    </select>
+                </label>
+            </div>
+
+            <div id="bought-values" aria-hidden="false">
+                <label for="date-bought">Date Bought:
+                    <input required type="text" name="date-bought" id="date-bought">
+                </label>
+                <label for="bought-from">Location Bought (OPTIONAL):
+                    <input type="text" name="bought-from" id="bought-from">
+                </label>
+            </div>
+
+            <div id="borrowed-values" aria-hidden="true">
+                <label for="date-borrowed" hidden>Date Borrowed:
+                    <input disabled type="text" name="date-borrowed" id="date-borrowed">
+                </label>
+                <label for="returned" hidden>Returned:
+                    <input disabled required type="checkbox" id="returned" name="returned">
+                </label>
+                <label for="date-returned" hidden>Date Returned (OPTIONAL):
+                    <input disabled type="text" name="date-returned" id="date-returned">
+                </label>
+                <label for="borrowed-from" hidden>Location Borrowed From (OPTIONAL):
+                    <input disabled type="text" name="borrowed-from" id="borrowed-from">
+                </label>
+            </div>
+
+            <button type="submit">Add Book</button>
+
+        </form>
+
+        <script src="../../dist/script/addbook.js" defer></script>
+    </body>
+</html>

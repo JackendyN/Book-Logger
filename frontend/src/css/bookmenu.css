@@ -1,0 +1,111 @@
+/* Shared styling between books.html and wishlist.html */
+
+:root {
+    --dark-blue: #021673;
+}
+
+* {
+    font-weight: normal;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-top: 11.5vh;
+}
+
+#filter-button::after {
+    content: "▼";
+    margin-left: 25px;
+}
+
+#filter-button:hover, #filter-menu > button:hover {
+    background-color: #f4f6ff;
+    cursor: pointer;
+}
+
+#author-filter-input {
+    max-width: 95%;
+}
+
+.submenu * {
+    margin: 0;
+    text-align: center;
+}
+
+#filter-menu {
+    display: none;
+}
+
+#filter-menu.active {
+    display: block;
+}
+
+button[type="submit"] {
+    width: 60%;
+}
+
+#book-container {
+    width: 95%;
+    justify-self: center;
+    margin-top: 7.5vh;
+}
+
+.book-listing {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    text-align: center;
+    border: 5px solid #2b3b80;
+    border-radius: 6px;
+    margin: 30px auto;
+    padding: 20px;
+    width: 90%;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.book-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-info h3, .book-info h4 {
+    margin: 0;
+}
+
+.book-info h4 {
+    margin-top: 12px;
+}
+
+.book-cover {
+    width: 150px;
+    max-width: 80%;
+    height: 80;
+    justify-self: center;
+}
+
+.book-cover:hover {
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 992px) {
+    .book-listing {
+        font-size: 22px;
+        margin: 50px auto;
+    }
+    #book-container {
+        margin-top: 12vh;
+    }
+}
+
+p {
+    display: block;
+    justify-self: center;
+}

@@ -1,0 +1,83 @@
+:root {
+    --dark-blue: #021673;
+}
+
+* {
+    font-weight: normal;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#log-out {
+    position: absolute;
+    top: 3%;
+    right: 5%;
+    background-color: #5170ff;
+    color: white;
+    font-size: 20px;
+    font-family: "Alice";
+    width: 30%;
+    max-width: 350px;
+    height: 42px;
+    border-radius: 45px;
+    border: 0px solid rgba(0,0,0,0);
+}
+
+#log-out:hover {
+    background-color: #3d5ef9;
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 2.3em;
+    text-align: center;
+    margin-top: 15vh;
+}
+
+#book-container {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    text-align: center;
+}
+
+.book-cover {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    width: 55%;
+    max-width: 260px;
+    height: 100%;
+    border: 10px solid var(--dark-blue);
+}
+
+.book hr {
+    border: 2px solid var(--dark-blue);
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.menu-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #2b3b80;
+    color: white;
+    font-family: "Alice";
+    margin-bottom: 40px;
+    width: 43%;
+    max-width: 450px;
+    height: 38px;
+    border-radius: 10px;
+    border: 0px solid rgba(0,0,0,0);
+    font-size: 17px;
+}
+
+.menu-button:hover {
+    background-color: #24326e;
+    cursor: pointer;
+}
