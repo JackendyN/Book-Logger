@@ -18,7 +18,3 @@ Object.entries(menuButtons).forEach(([buttonId, menuId]) => {
         showFilterMenu(menuId);
     });
 });
-const bookCovers = Array.from(document.querySelectorAll(".book-cover"));
-bookCovers.forEach((cover) => cover.addEventListener("click", () => {
-    window.location.href = "updatebook.html";
-}));

@@ -107,5 +107,5 @@ button[type="submit"] {
 
 p {
     display: block;
-    justify-self: center;
+    text-align: center;
 }

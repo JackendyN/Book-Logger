@@ -85,7 +85,7 @@
 
                 <form id="set-order-form">
                     <label>
-                        <input type="radio" name="order" value="chronological">
+                        <input type="radio" name="order" value="chronological" checked>
                         Chronological
                     </label>
 
@@ -106,7 +106,7 @@
                 alt=""
                 tabindex="0">
                 <div class="book-info">
-                    <h3><span class="bold">Book Title</span></h3>
+                    <h3><span class="bold">You should not be seeing this!</span></h3>
                     <h4>by <span class="bold">Book Author</span></h4>
                 </div>
                 <div class="when-obtained">
@@ -117,6 +117,8 @@
         </div>
         <p>You can update a book by clicking/pressing the cover!</p>
 
-        <script src="../../dist/script/booklist.js" defer></script>
+        <script defer src="../../dist/script/booklist.js"></script>
+        <script defer type="module" src="../../dist/script/bookinterfaces.js"></script>
+        <script defer type="module" src="../../dist/script/booklog.js"></script>
     </body>
 </html>

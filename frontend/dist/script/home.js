@@ -1,5 +1,6 @@
 "use strict";
-document.getElementById("log-out")?.addEventListener("click", (e) => {
+const logOutButton = document.getElementById("log-out");
+logOutButton?.addEventListener("click", (e) => {
     e.preventDefault();
     window.location.href = "index.html";
 });
@@ -12,3 +13,6 @@ document.getElementById("book-wishlist")?.addEventListener("click", () => {
 document.getElementById("add-book")?.addEventListener("click", () => {
     window.location.href = "newbook.html";
 });
+if (logOutButton && sessionStorage.getItem("guest") === "true") {
+    logOutButton.style.display = "none";
+}
