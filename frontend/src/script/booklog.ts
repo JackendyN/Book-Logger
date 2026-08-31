@@ -23,13 +23,7 @@ const compareDates = (bookA: AnyBook, bookB: AnyBook) => {
     return 0;
 }
 
-const renderBooks = (
-    books: AnyBook[], 
-    month: Number = 0,
-    year: Number = 0,
-    obtained: string = "",
-    author: string = ""
-) => {
+const renderBooks = (books: AnyBook[]) => {
     const bookContainer = document.getElementById("book-container");
     if(!bookContainer) return;
     bookContainer.innerHTML = "";
@@ -83,14 +77,19 @@ const renderBooks = (
         }
 
         bookContainer.appendChild(listing);
+        const bookCovers = Array.from(document.querySelectorAll<HTMLImageElement>(".book-cover, .book-name"));
+        bookCovers.forEach((cover) => cover.addEventListener("click", () => {
+            window.location.href = "updatebook.html";
+        }));
 
     });
 }
 
+let bookArray: AnyBook[] = [];
 document.addEventListener("DOMContentLoaded", () => {
     const books = localStorage.getItem("local-books");
     if(!books) return;
-    const bookArray: AnyBook[] = JSON.parse(books) || [];
+    bookArray = JSON.parse(books) || [];
     
     // Converting date objects
     bookArray.forEach((book: AnyBook) => {
@@ -107,9 +106,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     bookArray.sort(compareDates);
     renderBooks(bookArray);
-    const bookCovers = Array.from(document.querySelectorAll<HTMLImageElement>(".book-cover, .book-name"));
-    bookCovers.forEach((cover) => cover.addEventListener("click", () => {
-        window.location.href = "updatebook.html";
-    }));
+});
 
+const search = document.getElementById("search") as HTMLInputElement;
+if(search) search.addEventListener("input", () => {
+    const value = search.value;
+    const termRegex: RegExp = new RegExp(value, "i")
+    bookArray.sort(compareDates);
+    const filteredArray = bookArray.filter((book) => {
+        return termRegex.test(book["book-name"]);
+    });
+    renderBooks(filteredArray);
 });
