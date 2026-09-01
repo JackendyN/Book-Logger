@@ -28,9 +28,10 @@
                 <div id="filter-menu">
                     <button id="date-button">Date</button>
                     <div id="date-submenu" class="submenu">
-                        <form>
+                        <form id="date-filter-form">
                             <label>Month: 
-                                <select id="month-filter-select">
+                                <select id="month-filter-select" name="month">
+                                    <option value="0">Month</option>
                                     <option value="1">January</option>
                                     <option value="2">February</option>
                                     <option value="3">March</option>
@@ -46,7 +47,7 @@
                                 </select></label>
                             
                             <label>Year: 
-                                <select id="year-filter-select" required>
+                                <select id="year-filter-select" name="year" required>
                                     <option>2026</option>
                                     <option>2025</option>
                                     <option>2024</option>
@@ -85,12 +86,12 @@
 
                 <form id="set-order-form">
                     <label>
-                        <input type="radio" name="order" value="chronological" checked>
+                        <input type="radio" name="order" value="chronological" id="chronological" checked>
                         Chronological
                     </label>
 
                     <label>
-                        <input type="radio" name="order" value="alphabetical">
+                        <input type="radio" name="order" value="alphabetical" id="alphabetical">
                         Alphabetical
                     </label>
                 </form>
