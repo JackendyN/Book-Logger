@@ -19,6 +19,7 @@ const getBooks = () => {
     return parsedBooks;
 };
 document.addEventListener("DOMContentLoaded", () => {
+    changeResetVisibility("hide");
     bookArray = getBooks();
     renderBooks(bookArray);
 });
@@ -115,6 +116,7 @@ dateFilterForm?.addEventListener("submit", (e) => {
     }
     currentFilters["year"] = year;
     search.value = "";
+    changeResetVisibility("show");
     renderBooks(bookArray);
 });
 const obtainedFilterForm = document.getElementById("obtain-filter-form");
@@ -124,6 +126,7 @@ obtainedFilterForm?.addEventListener("submit", (e) => {
     currentFilters.borrowed = Boolean(data.get("borrowed"));
     currentFilters.owned = Boolean(data.get("owned"));
     search.value = "";
+    changeResetVisibility("show");
     renderBooks(bookArray);
 });
 document.getElementById("author-filter-form")
@@ -133,18 +136,28 @@ document.getElementById("author-filter-form")
     if (authorInput.value.trim().length > 0) {
         currentFilters.author = authorInput.value;
         search.value = "";
+        changeResetVisibility("show");
         renderBooks(bookArray);
     }
 });
-document.getElementById("reset-filters")
-    ?.addEventListener("click", () => {
-    currentFilters = {
-        borrowed: true,
-        owned: true
-    };
+const filterResetButton = document.getElementById("reset-filters");
+filterResetButton.addEventListener("click", () => {
+    // Default values
+    currentFilters = { borrowed: true, owned: true };
     search.value = "";
+    changeResetVisibility("hide");
     renderBooks(bookArray);
 });
+const changeResetVisibility = (status) => {
+    if (status === "show") {
+        filterResetButton.setAttribute("aria-hidden", "false");
+        filterResetButton.style.display = "block";
+    }
+    else {
+        filterResetButton.setAttribute("aria-hidden", "true");
+        filterResetButton.style.display = "none";
+    }
+};
 let sortMethod = "chronological";
 const renderBooks = (books) => {
     books = applyFilters(books);

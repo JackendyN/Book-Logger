@@ -23,6 +23,7 @@ const getBooks = (): AnyBook[] => {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    changeResetVisibility("hide");
     bookArray = getBooks();
     renderBooks(bookArray);
 });
@@ -132,6 +133,7 @@ dateFilterForm?.addEventListener("submit", (e: Event) => {
     }
     currentFilters["year"] = year;
     search.value = "";
+    changeResetVisibility("show");
     renderBooks(bookArray);
 });
 
@@ -142,6 +144,7 @@ obtainedFilterForm?.addEventListener("submit", (e: Event) => {
     currentFilters.borrowed = Boolean(data.get("borrowed"));
     currentFilters.owned = Boolean(data.get("owned"));
     search.value = "";
+    changeResetVisibility("show");
     renderBooks(bookArray);
 });
 
@@ -152,19 +155,29 @@ obtainedFilterForm?.addEventListener("submit", (e: Event) => {
         if(authorInput.value.trim().length > 0) {
             currentFilters.author = authorInput.value;
             search.value = "";
+            changeResetVisibility("show");
             renderBooks(bookArray);
         }
     });
 
-document.getElementById("reset-filters")
-    ?.addEventListener("click", () => {
-        currentFilters = {
-            borrowed: true,
-            owned: true
-        };
-        search.value = "";
-        renderBooks(bookArray);
-    });
+const filterResetButton = document.getElementById("reset-filters") as HTMLButtonElement;
+filterResetButton.addEventListener("click", () => {
+    // Default values
+    currentFilters = { borrowed: true, owned: true };
+    search.value = "";
+    changeResetVisibility("hide");
+    renderBooks(bookArray);
+});
+
+const changeResetVisibility = (status: "show" | "hide") => {
+    if(status === "show") {
+        filterResetButton.setAttribute("aria-hidden", "false");
+        filterResetButton.style.display = "block";
+    } else {
+        filterResetButton.setAttribute("aria-hidden", "true");
+        filterResetButton.style.display = "none";
+    }
+}
 
 let sortMethod = "chronological";
 const renderBooks = (books: AnyBook[]) => {
