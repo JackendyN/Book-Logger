@@ -1,3 +1,28 @@
+let bookArray = [];
+const getBooks = () => {
+    const books = localStorage.getItem("local-books");
+    if (!books)
+        return [];
+    const parsedBooks = JSON.parse(books) || [];
+    // Converting date objects
+    parsedBooks.forEach((book) => {
+        if (book.obtained === "bought") {
+            book["date-bought"] = new Date(book["date-bought"]);
+        }
+        else {
+            book["date-borrowed"] = new Date(book["date-borrowed"]);
+            if (book["date-returned"]) {
+                book["date-returned"] = new Date(book["date-returned"]);
+            }
+        }
+    });
+    return parsedBooks;
+};
+document.addEventListener("DOMContentLoaded", () => {
+    bookArray = getBooks();
+    renderBooks(bookArray);
+});
+// Comparing dates for chronological sorting
 const compareDates = (bookA, bookB) => {
     let dateA;
     if (bookA.obtained === "borrowed") {
@@ -19,18 +44,91 @@ const compareDates = (bookA, bookB) => {
     else {
         return 0;
     }
-    if (dateA > dateB)
-        return -1;
-    if (dateB > dateA)
-        return 1;
-    return 0;
+    return dateB.getTime() - dateA.getTime();
 };
+// Comparing the first letter of book names for alphabetical sorting
 const compareLetters = (bookA, bookB) => {
     return (bookA["book-name"].toLowerCase().charCodeAt(0) -
         bookB["book-name"].toLowerCase().charCodeAt(0));
 };
+let currentFilters = {
+    borrowed: true,
+    owned: true
+};
+const applyFilters = (books) => {
+    let newBooks = books;
+    if (Object.hasOwn(currentFilters, "year")) {
+        newBooks = newBooks.filter((book) => {
+            if (book.obtained === "borrowed") {
+                return Object.hasOwn(currentFilters, "month")
+                    ? book["date-borrowed"].getFullYear() === currentFilters.year
+                        && book["date-borrowed"].getMonth() + 1 === currentFilters.month
+                    : book["date-borrowed"].getFullYear() === currentFilters.year;
+            }
+            else {
+                return Object.hasOwn(currentFilters, "month")
+                    ? book["date-bought"].getFullYear() === currentFilters.year
+                        && book["date-bought"].getMonth() + 1 === currentFilters.month
+                    : book["date-bought"].getFullYear() === currentFilters.year;
+            }
+        });
+    }
+    if (currentFilters.borrowed && !currentFilters.owned) {
+        newBooks = newBooks.filter((book) => book.obtained === "borrowed");
+    }
+    else if (currentFilters.owned && !currentFilters.borrowed) {
+        newBooks = newBooks.filter((book) => book.obtained === "bought");
+    }
+    return newBooks;
+};
+const search = document.getElementById("search");
+if (search)
+    search.addEventListener("input", () => {
+        const value = search.value;
+        const termRegex = new RegExp(value, "i");
+        const filteredArray = currentArray.filter((book) => {
+            return termRegex.test(book["book-name"]);
+        });
+        renderBooks(filteredArray);
+    });
+let chronologicalButton = document.getElementById("chronological");
+const changeSortMethod = () => {
+    let newMethod = chronologicalButton.checked
+        ? "chronological"
+        : "alphabetical";
+    sortMethod = newMethod;
+    renderBooks(bookArray);
+};
+chronologicalButton?.addEventListener("input", changeSortMethod);
+document.getElementById("alphabetical")
+    ?.addEventListener("input", changeSortMethod);
+const dateFilterForm = document.getElementById("date-filter-form");
+dateFilterForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const dateData = new FormData(dateFilterForm);
+    const month = Number(dateData.get("month"));
+    const year = Number(dateData.get("year"));
+    if (month !== 0) {
+        currentFilters["month"] = month;
+    }
+    currentFilters["year"] = year;
+    search.value = "";
+    renderBooks(bookArray);
+});
+const obtainedFilterForm = document.getElementById("obtain-filter-form");
+obtainedFilterForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = new FormData(obtainedFilterForm);
+    currentFilters.borrowed = Boolean(data.get("borrowed"));
+    currentFilters.owned = Boolean(data.get("owned"));
+    search.value = "";
+    renderBooks(bookArray);
+});
+let currentArray;
 let sortMethod = "chronological";
 const renderBooks = (books) => {
+    currentArray = books;
+    books = applyFilters(books);
     books.sort(sortMethod === "chronological" ? compareDates : compareLetters);
     const bookContainer = document.getElementById("book-container");
     if (!bookContainer)
@@ -95,71 +193,4 @@ const renderBooks = (books) => {
         }));
     });
 };
-let bookArray = [];
-let dateFiltered = false;
-document.addEventListener("DOMContentLoaded", () => {
-    const books = localStorage.getItem("local-books");
-    if (!books)
-        return;
-    bookArray = JSON.parse(books) || [];
-    // Converting date objects
-    bookArray.forEach((book) => {
-        if (book.obtained === "bought") {
-            book["date-bought"] = new Date(book["date-bought"]);
-        }
-        else {
-            book["date-borrowed"] = new Date(book["date-borrowed"]);
-            if (book["date-returned"]) {
-                book["date-returned"] = new Date(book["date-returned"]);
-            }
-        }
-    });
-    renderBooks(bookArray);
-});
-const search = document.getElementById("search");
-if (search)
-    search.addEventListener("input", () => {
-        const value = search.value;
-        const termRegex = new RegExp(value, "i");
-        const filteredArray = bookArray.filter((book) => {
-            return termRegex.test(book["book-name"]);
-        });
-        renderBooks(filteredArray);
-    });
-let chronologicalButton = document.getElementById("chronological");
-const changeSortMethod = () => {
-    let newMethod = chronologicalButton.checked
-        ? "chronological"
-        : "alphabetical";
-    sortMethod = newMethod;
-    dateFiltered ? filterByDate() : renderBooks(bookArray);
-};
-chronologicalButton?.addEventListener("input", changeSortMethod);
-document
-    .getElementById("alphabetical")
-    ?.addEventListener("input", changeSortMethod);
-const filterByDate = () => {
-    dateFiltered = true;
-    const dateData = new FormData(dateFilterForm);
-    const filteredArray = bookArray.filter((book) => {
-        if (book.obtained === "borrowed") {
-            return Number(dateData.get("month")) !== 0
-                ? book["date-borrowed"].getFullYear() === Number(dateData.get("year"))
-                    && book["date-borrowed"].getMonth() + 1 === Number(dateData.get("month"))
-                : book["date-borrowed"].getFullYear() === Number(dateData.get("year"));
-        }
-        else {
-            return dateData.get("month")?.valueOf() !== 0
-                ? book["date-bought"].getFullYear() === Number(dateData.get("year"))
-                    && book["date-bought"].getMonth() + 1 === Number(dateData.get("month"))
-                : book["date-bought"].getFullYear() === Number(dateData.get("year"));
-        }
-    });
-    renderBooks(filteredArray);
-};
-const dateFilterForm = document.getElementById("date-filter-form");
-dateFilterForm?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    filterByDate();
-});
 export {};
