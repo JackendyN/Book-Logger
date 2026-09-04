@@ -90,6 +90,10 @@ const applyFilters = (books: AnyBook[]) => {
     } else if(currentFilters.owned && !currentFilters.borrowed) {
         newBooks = newBooks.filter((book) => book.obtained === "bought")
     }
+    if(Object.hasOwn(currentFilters, "author") && currentFilters.author) {
+        const authorExp = new RegExp(currentFilters.author, "i");
+        newBooks = newBooks.filter((book) => authorExp.test(book["author-name"]));
+    }
 
     return newBooks;
 }
@@ -99,9 +103,7 @@ if (search)
     search.addEventListener("input", () => {
         const value = search.value;
         const termRegex: RegExp = new RegExp(value, "i");
-        const filteredArray = currentArray.filter((book) => {
-            return termRegex.test(book["book-name"]);
-        });
+        const filteredArray = bookArray.filter((book) => termRegex.test(book["book-name"]));
         renderBooks(filteredArray);
     });
 
@@ -143,10 +145,19 @@ obtainedFilterForm?.addEventListener("submit", (e: Event) => {
     renderBooks(bookArray);
 });
 
-let currentArray: AnyBook[];
+(document.getElementById("author-filter-form") as HTMLFormElement)
+    .addEventListener("submit", (e: Event) => {
+        e.preventDefault();
+        const authorInput = document.getElementById("author-filter-input") as HTMLInputElement;
+        if(authorInput.value.length > 0) {
+            currentFilters.author = authorInput.value;
+            search.value = "";
+            renderBooks(bookArray);
+        }
+    });
+
 let sortMethod = "chronological";
 const renderBooks = (books: AnyBook[]) => {
-    currentArray = books;
     books = applyFilters(books);
     books.sort(sortMethod === "chronological" ? compareDates : compareLetters);
     const bookContainer = document.getElementById("book-container");
@@ -165,7 +176,7 @@ const renderBooks = (books: AnyBook[]) => {
                 const yearHeading = document.createElement("h2");
                 const line = document.createElement("hr");
                 yearHeading.className = "listing-year";
-                yearHeading.innerHTML = `<span class="bold">${bookYear}: </span>`;
+                yearHeading.innerHTML = `<span class="bold">${bookYear}:</span>`;
                 bookContainer.appendChild(yearHeading);
                 bookContainer.appendChild(line);
             }
