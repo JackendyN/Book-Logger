@@ -149,11 +149,21 @@ obtainedFilterForm?.addEventListener("submit", (e: Event) => {
     .addEventListener("submit", (e: Event) => {
         e.preventDefault();
         const authorInput = document.getElementById("author-filter-input") as HTMLInputElement;
-        if(authorInput.value.length > 0) {
+        if(authorInput.value.trim().length > 0) {
             currentFilters.author = authorInput.value;
             search.value = "";
             renderBooks(bookArray);
         }
+    });
+
+document.getElementById("reset-filters")
+    ?.addEventListener("click", () => {
+        currentFilters = {
+            borrowed: true,
+            owned: true
+        };
+        search.value = "";
+        renderBooks(bookArray);
     });
 
 let sortMethod = "chronological";

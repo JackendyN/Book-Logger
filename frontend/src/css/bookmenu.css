@@ -57,6 +57,22 @@ button[type="submit"] {
     width: 60%;
 }
 
+#reset-filters {
+    display: block;
+    width: 40%;
+    height: 26px;
+    margin: 6vw auto;
+    border-radius: 10px;
+    border: 0px solid black;
+    background-color: #e1e6ff;
+    font-family: "Alice", "Times New Roman";
+}
+
+#reset-filters:hover {
+    background-color: #f4f6ff;
+    cursor: pointer;
+}
+
 label[for="search"] {
     display: flex;
     flex-direction: row;
