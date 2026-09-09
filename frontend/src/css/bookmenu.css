@@ -147,3 +147,24 @@ p {
     display: block;
     text-align: center;
 }
+
+#add-book {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #2b3b80;
+    color: white;
+    font-family: "Alice";
+    margin-bottom: 40px;
+    width: 43%;
+    max-width: 450px;
+    height: 38px;
+    border-radius: 10px;
+    border: 0px solid rgba(0,0,0,0);
+    font-size: 17px;
+}
+
+#add-book:hover {
+    background-color: #24326e;
+    cursor: pointer;
+}

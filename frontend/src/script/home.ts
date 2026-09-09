@@ -18,10 +18,6 @@ document.getElementById("book-wishlist")?.addEventListener("click", () => {
     window.location.href = "wishlist.html";
 });
 
-document.getElementById("add-book")?.addEventListener("click", () => {
-    window.location.href = "newbook.html";
-});
-
 document.addEventListener("DOMContentLoaded", () => {
     const bookContainer = document.getElementById("book-container");
     if(!bookContainer) return;

@@ -55,10 +55,15 @@ const compareDates = (bookA: AnyBook, bookB: AnyBook) => {
 
 // Comparing the first letter of book names for alphabetical sorting
 const compareLetters = (bookA: AnyBook, bookB: AnyBook) => {
-    return (
-        bookA["book-name"].toLowerCase().charCodeAt(0) -
-        bookB["book-name"].toLowerCase().charCodeAt(0)
-    );
+    const nameA = bookA["book-name"];
+    const nameB = bookB["book-name"];
+    const shorterName = nameA.length <= nameB.length ? nameA : nameB;
+    for(let i = 0; i < shorterName.length; i++) {
+        const charA = bookA["book-name"].toLowerCase().charCodeAt(i);
+        const charB = bookB["book-name"].toLowerCase().charCodeAt(i);
+        if(charA !== charB) return charA - charB;
+    }
+    return 0;
 };
 
 let currentFilters: {
@@ -254,3 +259,7 @@ const renderBooks = (books: AnyBook[]) => {
         );
     });
 };
+
+document.getElementById("add-book")?.addEventListener("click", () => {
+    window.location.href = "newbook.html";
+});
