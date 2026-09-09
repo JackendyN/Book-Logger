@@ -15,6 +15,7 @@ export interface BorrowedBook extends Book {
     obtained: "borrowed";
     "date-borrowed": Date;
     returned: boolean;
+    "date-due"?: Date;
     "date-returned"?: Date;
     "borrowed-from"?: string;
 }

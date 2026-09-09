@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
         "book-name": "Dune",
         "author-name": "Frank Herbert",
-        reading: true,
+        reading: false,
         cover: "https://covers.openlibrary.org/b/isbn/9780441172719-L.jpg",
         obtained: "bought",
         "date-bought": new Date("2026-08-20"),
@@ -45,12 +45,12 @@ document.addEventListener("DOMContentLoaded", () => {
     {
         "book-name": "The Great Gatsby",
         "author-name": "F. Scott Fitzgerald",
-        reading: false,
+        reading: true,
         cover: "https://covers.openlibrary.org/b/isbn/9780743273565-L.jpg",
         obtained: "borrowed",
         "date-borrowed": new Date("2025-06-10"),
         returned: true,
-        "date-returned": new Date("2025-06-25"),
+        "date-due": new Date("2025-06-25"),
         "borrowed-from": "Emily"
     },
     {
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
         "book-name": "Pride and Prejudice",
         "author-name": "Jane Austen",
-        reading: true,
+        reading: false,
         cover: "https://covers.openlibrary.org/b/isbn/9780141330167-L.jpg",
         obtained: "borrowed",
         "date-borrowed": new Date("2024-08-05"),
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
         "book-name": "Fahrenheit 451",
         "author-name": "Ray Bradbury",
-        reading: false,
+        reading: true,
         obtained: "bought",
         "date-bought": new Date("2026-04-22"),
         "bought-from": "Local Bookstore"
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
         "book-name": "The Name of the Wind",
         "author-name": "Patrick Rothfuss",
-        reading: true,
+        reading: false,
         obtained: "bought",
         "date-bought": new Date("2026-08-01"),
         "bought-from": "Barnes & Noble"
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
         "book-name": "The Martian",
         "author-name": "Andy Weir",
-        reading: true,
+        reading: false,
         cover: "https://img.drz.lazcdn.com/static/pk/p/eff7aa7e6e0658a8ff46c6e7dd06a1cb.png_720x720q80.png",
         obtained: "bought",
         "date-bought": new Date("2026-08-15"),
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
         "book-name": "Jane Eyre",
         "author-name": "Charlotte Brontë",
-        reading: true,
+        reading: false,
         obtained: "borrowed",
         "date-borrowed": new Date("2026-08-10"),
         returned: false,

@@ -1,5 +1,5 @@
 let bookArray = [];
-const getBooks = () => {
+export const getBooks = () => {
     const books = localStorage.getItem("local-books");
     if (!books)
         return [];
@@ -13,6 +13,9 @@ const getBooks = () => {
             book["date-borrowed"] = new Date(book["date-borrowed"]);
             if (book["date-returned"]) {
                 book["date-returned"] = new Date(book["date-returned"]);
+            }
+            if (book["date-due"]) {
+                book["date-due"] = new Date(book["date-due"]);
             }
         }
     });
@@ -130,7 +133,7 @@ obtainedFilterForm?.addEventListener("submit", (e) => {
     renderBooks(bookArray);
 });
 document.getElementById("author-filter-form")
-    .addEventListener("submit", (e) => {
+    ?.addEventListener("submit", (e) => {
     e.preventDefault();
     const authorInput = document.getElementById("author-filter-input");
     if (authorInput.value.trim().length > 0) {
@@ -141,7 +144,7 @@ document.getElementById("author-filter-form")
     }
 });
 const filterResetButton = document.getElementById("reset-filters");
-filterResetButton.addEventListener("click", () => {
+filterResetButton?.addEventListener("click", () => {
     // Default values
     currentFilters = { borrowed: true, owned: true };
     search.value = "";
@@ -205,7 +208,7 @@ const renderBooks = (books) => {
             listing.innerHTML += `
                 <div class="when-obtained">
                     <h3><span class="bold">Borrowed On:</span></h3>
-                    <h3>${book["date-borrowed"].getMonth() + 1}/${book["date-borrowed"].getDay() + 1}/${book["date-borrowed"].getFullYear()}</h3>
+                    <h3>${book["date-borrowed"].getUTCMonth() + 1}/${book["date-borrowed"].getUTCDate()}/${book["date-borrowed"].getFullYear()}</h3>
                 </div>
             `;
         }
@@ -214,7 +217,7 @@ const renderBooks = (books) => {
                 <div class="when-obtained">
                     <h3><span class="bold">Obtained On:</span></h3>
                     <h3>
-                    ${book["date-bought"].getMonth() + 1}/${book["date-bought"].getDay() + 1}/${book["date-bought"].getFullYear()}</h3>
+                    ${book["date-bought"].getUTCMonth() + 1}/${book["date-bought"].getUTCDate()}/${book["date-bought"].getFullYear()}</h3>
                 </div>
             `;
         }
@@ -225,4 +228,3 @@ const renderBooks = (books) => {
         }));
     });
 };
-export {};
