@@ -21,3 +21,15 @@ Object.entries(menuButtons).forEach(([buttonId, menuId]) => {
         showFilterMenu(menuId);
     });
 });
+
+export const changeResetVisibility = (status: "show" | "hide") => {
+    const filterResetButton = document.getElementById("reset-filters") as HTMLButtonElement;
+    if(!filterResetButton) return;
+    if(status === "show") {
+        filterResetButton.setAttribute("aria-hidden", "false");
+        filterResetButton.style.display = "block";
+    } else {
+        filterResetButton.setAttribute("aria-hidden", "true");
+        filterResetButton.style.display = "none";
+    }
+}

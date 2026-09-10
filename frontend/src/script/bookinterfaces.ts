@@ -20,4 +20,12 @@ export interface BorrowedBook extends Book {
     "borrowed-from"?: string;
 }
 
+export interface FutureBook {
+    "book-name": string;
+    "author-name": string;
+    cover?: string;
+    obtaining: "borrowing" | "owning";
+    location?: string;
+}
+
 export type AnyBook = BoughtBook | BorrowedBook;

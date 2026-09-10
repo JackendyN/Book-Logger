@@ -1,4 +1,5 @@
 import {  AnyBook } from "./bookinterfaces";
+import { changeResetVisibility } from "./booklist.js";
 
 let bookArray: AnyBook[] = [];
 export const getBooks = (): AnyBook[] => {
@@ -53,7 +54,7 @@ const compareDates = (bookA: AnyBook, bookB: AnyBook) => {
     return dateB.getTime() - dateA.getTime();
 };
 
-// Comparing the first letter of book names for alphabetical sorting
+// Iteratively compares letters of book names for alphabetical sorting
 const compareLetters = (bookA: AnyBook, bookB: AnyBook) => {
     const nameA = bookA["book-name"];
     const nameB = bookB["book-name"];
@@ -108,13 +109,14 @@ const applyFilters = (books: AnyBook[]) => {
 }
 
 const search = document.getElementById("search") as HTMLInputElement;
-if (search)
+if (search) {
     search.addEventListener("input", () => {
         const value = search.value;
         const termRegex: RegExp = new RegExp(value, "i");
         const filteredArray = bookArray.filter((book) => termRegex.test(book["book-name"]));
         renderBooks(filteredArray);
     });
+}
 
 let chronologicalButton = document.getElementById("chronological") as HTMLInputElement;
 
@@ -176,16 +178,6 @@ filterResetButton?.addEventListener("click", () => {
     changeResetVisibility("hide");
     renderBooks(bookArray);
 });
-
-const changeResetVisibility = (status: "show" | "hide") => {
-    if(status === "show") {
-        filterResetButton.setAttribute("aria-hidden", "false");
-        filterResetButton.style.display = "block";
-    } else {
-        filterResetButton.setAttribute("aria-hidden", "true");
-        filterResetButton.style.display = "none";
-    }
-}
 
 let sortMethod = "chronological";
 const renderBooks = (books: AnyBook[]) => {

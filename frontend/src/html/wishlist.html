@@ -22,19 +22,19 @@
         <div id="filter-menu">
             <button id="obtained-button">Method Obtained</button>
                 <div id="obtain-submenu" class="submenu">
-                    <form>
-                        <label>Borrowed: 
-                            <input type="checkbox" value="borrowed" checked>
+                    <form id="obtain-filter-form">
+                        <label>Borrowing: 
+                            <input type="checkbox" value="borrowed" name="borrowed" checked>
                         </label>
-                        <label>Owned: 
-                            <input type="checkbox" value="owned" checked>
+                        <label>Owning: 
+                            <input type="checkbox" value="owned" name="owned" checked>
                         </label>
                         <button type="submit">Update</button>
                     </form>
                 </div>
                 <button id="author-button">Author</button>
                 <div id="author-submenu" class="submenu">
-                    <form>
+                    <form id="author-filter-form">
                         <label> Author:
                             <input required type="text" id="author-filter-input">
                         </label>
@@ -42,6 +42,10 @@
                     </form>
                 </div>
         </div>
+        <button id="reset-filters">Reset Filters</button>
+        <label for="search"> Search: 
+            <input type="text" id="search">
+        </label>
 
         <div id="book-container">
             <div class="book-listing">
@@ -57,7 +61,9 @@
             </div>
         </div>
         <p>You can update a book by clicking/pressing the cover!</p>
-
-        <script src="../../dist/script/booklist.js" defer></script>
+        <button id="add-book">Add Book</button>
+        
+        <script type="module" src="../../dist/script/booklist.js" defer></script>
+        <script type="module" src="../../dist/script/wishlist.js" defer></script>
     </body>
 </html>
